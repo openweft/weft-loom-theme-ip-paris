@@ -3,42 +3,53 @@
  * @author weft-loom
  * @author_url https://github.com/openweft
  *
- * Marp slide theme inspired by the Institut Polytechnique de
- * Paris visual identity (deep navy primary, steel-blue accent ;
- * brand-accurate after dropping the earlier ochre mis-attribution).
+ * Marp slide theme for Institut Polytechnique de Paris. Colours
+ * sourced from the www.ip-paris.fr theme stylesheet (frequency-
+ * counted) : the dominant primary is #008BD2 (cyan-blue, 204×),
+ * with brand-secondary green #8DBE23 (96×) and brand-tertiary
+ * orange #E9500E (73×). The earlier "navy-only" draft was wrong ;
+ * IP Paris's web identity is unambiguously bright + multicolour.
  */
 
 @import 'default';
 
-/* IP Paris brand : deep navy primary with light steel-blue accent ;
- * no ochre — that was my earlier mis-attribution. The actual brand
- * guide centres on a navy-only palette + generous white space. */
+/* Site-validated palette (ip-paris.fr stylesheet, 2026-06 audit).
+ * Alverata is the IP Paris brand serif but is Typekit-only and
+ * not redistributable ; fall back to free academic serifs. */
 :root {
-  --ipp-navy: #002554;
-  --ipp-navy-light: #2a4a7a;
-  --ipp-steel: #6b8aac;
-  --ipp-grey: #4a4a4a;
-  --ipp-bg: #ffffff;
-  --ipp-muted: #7a7a7a;
+  --ipp-blue:   #008bd2;
+  --ipp-green:  #8dbe23;
+  --ipp-orange: #e9500e;
+  --ipp-navy:   #003a6d;
+  --ipp-text:   #212529;
+  --ipp-muted:  #6c757d;
+  --ipp-paper:  #f8f9fa;
+  --ipp-bg:     #ffffff;
 }
 
 section {
   background: var(--ipp-bg);
-  color: var(--ipp-grey);
-  font-family: "Source Sans Pro", "Helvetica Neue", "Arial", sans-serif;
+  color: var(--ipp-text);
+  font-family: -apple-system, "Helvetica Neue", "Arial", sans-serif;
   padding: 56px 72px;
   font-size: 28px;
   line-height: 1.5;
 }
 
+/* Triple-stripe banner at the top echoes the IP Paris site's
+ * brand-blue + green + orange triad used across cards/CTAs. */
 section::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
-  width: 6px;
-  bottom: 0;
-  background: linear-gradient(180deg, var(--ipp-navy) 0%, var(--ipp-steel) 100%);
+  right: 0;
+  height: 6px;
+  background:
+    linear-gradient(90deg,
+      var(--ipp-blue)   0%, var(--ipp-blue)   60%,
+      var(--ipp-green) 60%, var(--ipp-green) 85%,
+      var(--ipp-orange) 85%, var(--ipp-orange) 100%);
 }
 
 section::after {
@@ -48,73 +59,76 @@ section::after {
   right: 32px;
   font-size: 13px;
   color: var(--ipp-muted);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
 }
 
-h1 {
+h1, h2, h3 {
+  font-family: "Source Serif Pro", "Cardo", "Alverata", "Georgia", serif;
   color: var(--ipp-navy);
-  font-size: 2.4em;
   font-weight: 700;
-  border-bottom: 3px solid var(--ipp-steel);
-  padding-bottom: 0.15em;
   margin-bottom: 0.6em;
 }
+h1 {
+  font-size: 2.4em;
+  border-bottom: 3px solid var(--ipp-blue);
+  padding-bottom: 0.15em;
+}
 h2 {
-  color: var(--ipp-navy);
-  font-size: 1.6em;
-  font-weight: 600;
+  font-size: 1.7em;
+  color: var(--ipp-blue);
 }
 h3 {
-  color: var(--ipp-steel);
-  font-size: 1.2em;
+  font-size: 1.25em;
+  color: var(--ipp-green);
 }
 
-a { color: var(--ipp-navy); text-decoration: underline; }
+a {
+  color: var(--ipp-blue);
+  text-decoration: none;
+  border-bottom: 2px solid var(--ipp-orange);
+}
 
 code {
-  background: #f4f6fa;
-  color: var(--ipp-navy-light);
+  background: var(--ipp-paper);
+  color: var(--ipp-navy);
   padding: 2px 6px;
   border-radius: 3px;
   font-family: "JetBrains Mono", "Menlo", monospace;
-  font-size: 0.9em;
 }
 
 pre code {
-  background: var(--ipp-navy-light);
-  color: #e6eef9;
-  border-left: 4px solid var(--ipp-steel);
+  background: var(--ipp-navy);
+  color: #d6e9f5;
+  border-left: 4px solid var(--ipp-blue);
   display: block;
   padding: 1em;
 }
 
 blockquote {
-  border-left: 4px solid var(--ipp-steel);
+  border-left: 4px solid var(--ipp-green);
   padding-left: 1em;
-  color: var(--ipp-navy);
+  color: var(--ipp-text);
+  background: var(--ipp-paper);
 }
 
-ul li::marker { color: var(--ipp-steel); }
+ul li::marker { color: var(--ipp-orange); }
 
 section.lead {
-  background: linear-gradient(135deg, var(--ipp-navy) 0%, var(--ipp-navy-light) 100%);
+  background: linear-gradient(135deg, var(--ipp-blue) 0%, var(--ipp-navy) 100%);
   color: white;
   text-align: center;
 }
 section.lead::before { display: none; }
-section.lead::after { color: rgba(255, 255, 255, 0.6); }
-section.lead h1 {
-  color: white;
-  border-bottom: 3px solid var(--ipp-steel);
-  display: inline-block;
-}
-section.lead h2 { color: var(--ipp-steel); font-weight: 400; }
+section.lead::after { color: rgba(255, 255, 255, 0.7); }
+section.lead h1 { color: white; border-bottom: 3px solid var(--ipp-orange); display: inline-block; }
+section.lead h2 { color: var(--ipp-green); }
+section.lead h3 { color: rgba(255, 255, 255, 0.85); }
 
 table { border-collapse: collapse; }
 th {
-  background: var(--ipp-navy);
+  background: var(--ipp-blue);
   color: white;
   padding: 0.4em 0.8em;
   text-align: left;
 }
-td { padding: 0.4em 0.8em; border-bottom: 1px solid #e0e6ee; }
+td { padding: 0.4em 0.8em; border-bottom: 1px solid #dee2e6; }
