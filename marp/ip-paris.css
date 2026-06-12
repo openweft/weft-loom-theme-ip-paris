@@ -113,12 +113,41 @@ blockquote {
 
 ul li::marker { color: var(--ipp-orange); }
 
+/* Lead / title slide cover. Same trademark policy as the
+ * sibling themes : no logotype file bundled. Users supply their
+ * own via the `--ipp-logo` CSS variable :
+ *
+ *   <!-- _class: lead -->
+ *   <!-- _style: "--ipp-logo: url(/path/to/ip-paris-logo.svg)" -->
+ *
+ * Without that override, the cover renders a typographic wordmark
+ * keyed to the IP Paris brand serif.
+ */
 section.lead {
   background: linear-gradient(135deg, var(--ipp-blue) 0%, var(--ipp-navy) 100%);
   color: white;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  --ipp-logo: none;
 }
-section.lead::before { display: none; }
+section.lead::before {
+  content: 'Institut Polytechnique de Paris';
+  display: block;
+  position: static;
+  width: auto;
+  font-family: "Source Serif Pro", "Cardo", "Alverata", "Georgia", serif;
+  font-weight: 600;
+  font-size: 1.1em;
+  letter-spacing: 0.05em;
+  color: white;
+  background: var(--ipp-logo) center / contain no-repeat;
+  background-color: transparent;
+  margin-bottom: 1.2em;
+  min-height: 1.4em;
+}
+section.lead[style*="--ipp-logo"]::before { font-size: 0; min-height: 100px; }
 section.lead::after { color: rgba(255, 255, 255, 0.7); }
 section.lead h1 { color: white; border-bottom: 3px solid var(--ipp-orange); display: inline-block; }
 section.lead h2 { color: var(--ipp-green); }
