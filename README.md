@@ -1,3 +1,5 @@
+<p align="center"><img src="https://raw.githubusercontent.com/openweft/brand/main/social/weft-loom-theme-ip-paris.png" alt="weft-loom-theme-ip-paris" width="720"></p>
+
 # weft-loom-theme-ip-paris
 
 `ip-paris` brand theme for weft-loom compile tooling.
